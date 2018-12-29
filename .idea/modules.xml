@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/oddPredictor-example.iml" filepath="$PROJECT_DIR$/.idea/modules/oddPredictor-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/oddPredictor-example_main.iml" filepath="$PROJECT_DIR$/.idea/modules/oddPredictor-example_main.iml" group="oddPredictor-example" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/oddPredictor-example_test.iml" filepath="$PROJECT_DIR$/.idea/modules/oddPredictor-example_test.iml" group="oddPredictor-example" />
+      <module fileurl="file://$PROJECT_DIR$/oddScrapper.iml" filepath="$PROJECT_DIR$/oddScrapper.iml" />
+    </modules>
+  </component>
+</project>
