@@ -13,8 +13,8 @@ public class SportyBetThread  implements Runnable{
     ArrayList<Bet>TeamsData = new ArrayList<>();
     ArrayList<WebElement>outcomes;
 
-    public SportyBetThread() {
-        driver = new ChromeDriver();
+    public SportyBetThread(WebDriver driver) {
+        this.driver = driver;
         driver.get("https://www.sportybet.com/ke/sport/football/today");
 
     }

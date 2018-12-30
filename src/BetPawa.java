@@ -11,29 +11,30 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class BetPawa implements Runnable {
-    WebDriver betpawaDriver;
+    WebDriver driver;
     ArrayList<WebElement>block_event;
     ArrayList<WebElement>selections;
     ArrayList<WebElement>eventList;
     ArrayList<Bet>TeamData = new ArrayList<>();
 
-    public BetPawa() {
-        betpawaDriver = new ChromeDriver();
+    public BetPawa(WebDriver driver) {
+        driver.get("https://www.betpawa.co.ke/upcoming");
+        this.driver = driver;
 
-        betpawaDriver.get("https://www.betpawa.co.ke/upcoming");
+
     }
 
     @Override
     public void run() {
-        long lastHeight = (long) ((JavascriptExecutor)betpawaDriver).executeScript("return document.body.scrollHeight");
+        long lastHeight = (long) ((JavascriptExecutor)driver).executeScript("return document.body.scrollHeight");
         long i = 0;
 
 
         while (i<=lastHeight) {
 
-            block_event = (ArrayList<WebElement>) betpawaDriver.findElements(By.cssSelector(".block.event"));
+            block_event = (ArrayList<WebElement>) driver.findElements(By.cssSelector(".block.event"));
                String string = String.format("window.scrollTo(0,%s)",i);
-              ((JavascriptExecutor) betpawaDriver)
+              ((JavascriptExecutor) driver)
                       .executeScript(string);
             i += 150;
 
@@ -48,7 +49,7 @@ public class BetPawa implements Runnable {
 
 
 
-        eventList = (ArrayList<WebElement>)betpawaDriver.findElements(By.cssSelector(".events-container.prematch"));
+        eventList = (ArrayList<WebElement>)driver.findElements(By.cssSelector(".events-container.prematch"));
 
         for(WebElement team: eventList){
             Bet Team =  new Bet();
@@ -87,7 +88,7 @@ public class BetPawa implements Runnable {
 
 
 
-        betpawaDriver.close();
+        driver.close();
 
     }
 

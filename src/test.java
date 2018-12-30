@@ -27,10 +27,10 @@ public class test {
 //        DafabetThread dafabetThread = new DafabetThread();
 //        dafabetThread.run();
 
-        SportyBetThread sportyBetThread = new SportyBetThread();
+        SportyBetThread sportyBetThread = new SportyBetThread(new ChromeDriver());
         sportyBetThread.run();
 
-        BetPawa betPawa = new BetPawa();
+        BetPawa betPawa = new BetPawa(new ChromeDriver());
         betPawa.run();
 
 
