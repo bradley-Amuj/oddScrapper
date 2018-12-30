@@ -26,20 +26,40 @@ public class BetPawa implements Runnable {
 
     @Override
     public void run() {
-        long lastHeight = (long) ((JavascriptExecutor)driver).executeScript("return document.body.scrollHeight");
-        long i = 0;
-
-
-        while (i<=lastHeight) {
-
+        long lastHeight = (long) ((JavascriptExecutor) driver).executeScript("return document.body.scrollHeight");
+        while (true) {
             block_event = (ArrayList<WebElement>) driver.findElements(By.cssSelector(".block.event"));
-               String string = String.format("window.scrollTo(0,%s)",i);
-              ((JavascriptExecutor) driver)
-                      .executeScript(string);
-            i += 150;
+            ((JavascriptExecutor) driver)
+                    .executeScript("window.scrollTo(0, document.body.scrollHeight);");
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            long new_height = (long) ((JavascriptExecutor)driver).executeScript("return document.body.scrollHeight");
+            if (new_height == lastHeight) {
+                break;
+
+            }
+            else{
+            lastHeight = new_height;
+
+        }}
+
+        System.out.println(block_event.size());
 
 
-        }
+//        while (i<=lastHeight) {
+//
+//            block_event = (ArrayList<WebElement>) driver.findElements(By.cssSelector(".block.event"));
+//               String string = String.format("window.scrollTo(0,%s)",i);
+//              ((JavascriptExecutor) driver)
+//                      .executeScript(string);
+//            i += 150;
+//
+//
+//        }
 
 //        ((JavascriptExecutor)betpawaDriver).executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
 //        block_event = (ArrayList<WebElement>) betpawaDriver.findElements(By.cssSelector(".block.event"));

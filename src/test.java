@@ -42,16 +42,22 @@ public class test {
 
 
         long lastHeight = (long) ((JavascriptExecutor) driver).executeScript("return document.body.scrollHeight");
-        long i = 0;
-        while (i <= lastHeight) {
+
+        while (true) {
 
             rows = (ArrayList<WebElement>) driver.findElements(By.cssSelector(".match-content.table-a.soccer"));
-            String string = String.format("window.scrollTo(0,%s)", i);
-            ((JavascriptExecutor) driver)
-                    .executeScript(string);
-            i += 150;
+           ((JavascriptExecutor) driver)
+                    .executeScript("window.scrollTo(0, document.body.scrollHeight);");
+           Thread.sleep(2000);
+            long new_height = (long) ((JavascriptExecutor)driver).executeScript("return document.body.scrollHeight");
+            if (new_height == lastHeight) {
+                break;
 
-        }
+            }
+            lastHeight = new_height;
+
+            }
+
 
 
         ArrayList<Bet> teamsData = new ArrayList<>();
