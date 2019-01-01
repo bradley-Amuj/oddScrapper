@@ -10,16 +10,13 @@ public class test {
 
     public static void main(String[] args) throws InterruptedException {
 
-        ArrayList<WebElement> rows = null;
+
         ArrayList<Bet> betIN_sporty = new ArrayList<>();
-
-
         System.setProperty("webdriver.chrome.driver", "/Users/user/Desktop/Java/chromedriver");
 
+        BetInThread betInThread = new BetInThread(new ChromeDriver());
+        betInThread.run();
 
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.get("https://sports.betin.co.ke/mobile#/dailyBundle/soccer/1-1000");
 
         //SportPesaThread sportPesa = new SportPesaThread();
         //sportPesa.run();
@@ -29,9 +26,9 @@ public class test {
 
         SportyBetThread sportyBetThread = new SportyBetThread(new ChromeDriver());
         sportyBetThread.run();
-
-        BetPawa betPawa = new BetPawa(new ChromeDriver());
-        betPawa.run();
+//
+       BetPawa betPawa = new BetPawa(new ChromeDriver());
+       betPawa.run();
 
 
         //EliteBetThread eliteBetThread = new EliteBetThread();
@@ -41,74 +38,11 @@ public class test {
         //betboss.run();
 
 
-        long lastHeight = (long) ((JavascriptExecutor) driver).executeScript("return document.body.scrollHeight");
-
-        while (true) {
-
-            rows = (ArrayList<WebElement>) driver.findElements(By.cssSelector(".match-content.table-a.soccer"));
-           ((JavascriptExecutor) driver)
-                    .executeScript("window.scrollTo(0, document.body.scrollHeight);");
-           Thread.sleep(2000);
-            long new_height = (long) ((JavascriptExecutor)driver).executeScript("return document.body.scrollHeight");
-            if (new_height == lastHeight) {
-                break;
-
-            }
-            lastHeight = new_height;
-
-            }
 
 
 
-        ArrayList<Bet> teamsData = new ArrayList<>();
-
-
-        for (WebElement rowDetails : rows) {
-            ArrayList<WebElement> teamDetails = (ArrayList<WebElement>) rowDetails.findElements(By.cssSelector(".match-content__row.table-f"));
-            ArrayList<WebElement> betDetails = (ArrayList<WebElement>) rowDetails.findElements(By.cssSelector(".bets__item"));
-
-            Bet Team = new Bet();
-
-            for (int x = 0; x < teamDetails.size(); x++) {
-
-
-                switch (x) {
-                    case 0:
-                        Team.setHome_team(teamDetails.get(x).getText().toLowerCase());
-                        break;
-                    case 1:
-                        Team.setAway_team(teamDetails.get(x).getText().toLowerCase());
-                        break;
-
-                }
-
-
-            }
-
-            for (int y = 0; y < betDetails.size(); y++) {
-                switch (y) {
-                    case 0:
-                        Team.setHome_win(betDetails.get(y).getText());
-                        break;
-                    case 1:
-                        Team.setDraw(betDetails.get(y).getText());
-                        break;
-                    case 2:
-                        Team.setAway_win(betDetails.get(y).getText());
-                        Team.setSite("BetIn");
-                        break;
-                }
-
-
-            }
-            teamsData.add(Team);
-
-        }
-
-        driver.close();
-
-        betIN_sporty = getMatch(teamsData, sportyBetThread.TeamsData);
-        getMatch(teamsData, sportyBetThread.TeamsData);
+        betIN_sporty = getMatch(betInThread.teamsData, sportyBetThread.TeamsData);
+        getMatch(betInThread.teamsData, sportyBetThread.TeamsData);
 
 
 
@@ -151,6 +85,7 @@ public class test {
 
 
     }
+
 
     private static ArrayList<Bet> getMatch(ArrayList<Bet> ListA, ArrayList<Bet> ListB) {
 
@@ -248,6 +183,7 @@ public class test {
 
 
 }
+
 
 
 

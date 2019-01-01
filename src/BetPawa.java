@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class BetPawa implements Runnable {
+    private long new_height;
     WebDriver driver;
     ArrayList<WebElement>block_event;
     ArrayList<WebElement>selections;
@@ -27,6 +28,7 @@ public class BetPawa implements Runnable {
     @Override
     public void run() {
         long lastHeight = (long) ((JavascriptExecutor) driver).executeScript("return document.body.scrollHeight");
+
         while (true) {
             block_event = (ArrayList<WebElement>) driver.findElements(By.cssSelector(".block.event"));
             ((JavascriptExecutor) driver)
@@ -37,7 +39,7 @@ public class BetPawa implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            long new_height = (long) ((JavascriptExecutor)driver).executeScript("return document.body.scrollHeight");
+            new_height = (long) ((JavascriptExecutor)driver).executeScript("return document.body.scrollHeight");
             if (new_height == lastHeight) {
                 break;
 
@@ -47,34 +49,11 @@ public class BetPawa implements Runnable {
 
         }}
 
-        System.out.println(block_event.size());
-
-
-//        while (i<=lastHeight) {
-//
-//            block_event = (ArrayList<WebElement>) driver.findElements(By.cssSelector(".block.event"));
-//               String string = String.format("window.scrollTo(0,%s)",i);
-//              ((JavascriptExecutor) driver)
-//                      .executeScript(string);
-//            i += 150;
-//
-//
-//        }
-
-//        ((JavascriptExecutor)betpawaDriver).executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
-//        block_event = (ArrayList<WebElement>) betpawaDriver.findElements(By.cssSelector(".block.event"));
-
-
-
-
-
 
         eventList = (ArrayList<WebElement>)driver.findElements(By.cssSelector(".events-container.prematch"));
 
         for(WebElement team: eventList){
             Bet Team =  new Bet();
-
-
 
             selections = (ArrayList<WebElement>)team.findElements(By.cssSelector(".event-bet"));
 
@@ -101,13 +80,11 @@ public class BetPawa implements Runnable {
             }
 
 
+
+
             TeamData.add(Team);
         }
-
-
-
-
-
+        
         driver.close();
 
     }

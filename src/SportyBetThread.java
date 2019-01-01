@@ -23,21 +23,30 @@ public class SportyBetThread  implements Runnable{
     public void run() {
 
         long lastHeight = (long) ((JavascriptExecutor)driver).executeScript("return document.body.scrollHeight");
-        long i = 0;
-        while (i<=lastHeight) {
-
-            // leagueRows = (ArrayList<WebElement>) driver.findElements(By.cssSelector(".match-league-wrap"));
+        while (true) {
 
             teamList = (ArrayList<WebElement>) driver.findElements(By.cssSelector(".m-table-row.m-content-row.match-row"));
-               String string = String.format("window.scrollTo(0,%s)",i);
-              ((JavascriptExecutor) driver)
-                      .executeScript(string);
-            i += 150;
+
+            ((JavascriptExecutor) driver)
+                    .executeScript("window.scrollTo(0, document.body.scrollHeight);");
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            long new_height = (long) ((JavascriptExecutor) driver).executeScript("return document.body.scrollHeight");
+            if (new_height == lastHeight) {
+                break;
+
+            } else {
+                lastHeight = new_height;
+
+
+            }
+
 
         }
-
-
-
 
         for(WebElement item: teamList){
 
