@@ -10,12 +10,12 @@ public class test {
 
     public static void main(String[] args) throws InterruptedException {
 
-
         ArrayList<Bet> betIN_sporty = new ArrayList<>();
         System.setProperty("webdriver.chrome.driver", "/Users/user/Desktop/Java/chromedriver");
 
         BetInThread betInThread = new BetInThread(new ChromeDriver());
         betInThread.run();
+
 
 
         //SportPesaThread sportPesa = new SportPesaThread();
@@ -45,6 +45,9 @@ public class test {
         getMatch(betInThread.teamsData, sportyBetThread.TeamsData);
 
 
+
+        Gmail gmail = new Gmail("email@gmail.com","password");
+        gmail.sendMessage("running successfully");
 
 
         boolean positiveReturns = false;

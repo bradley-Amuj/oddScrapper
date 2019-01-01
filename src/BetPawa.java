@@ -84,7 +84,7 @@ public class BetPawa implements Runnable {
 
             TeamData.add(Team);
         }
-        
+
         driver.close();
 
     }
