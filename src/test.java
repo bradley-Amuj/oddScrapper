@@ -42,8 +42,6 @@ public class test {
 
 
         betIN_sporty = getMatch(betInThread.teamsData, sportyBetThread.TeamsData);
-        getMatch(betInThread.teamsData, sportyBetThread.TeamsData);
-
 
 
         boolean positiveReturns = false;
@@ -71,6 +69,17 @@ public class test {
                     if (arbitarageValue <= 99) {
 
                         positiveReturns = true;
+
+                        //replace with your emailadress and password
+                        new Gmail("you'reEmail@gmail.com","password").sendMessage(
+                                "Site:" + betPawa.TeamData.get(a).getSite() + "\n" + "Home Team:-" + betPawa.TeamData.get(a).getHome_team() + ": " + betPawa.TeamData.get(a).getHome_win()
+                                        + " " + "Draw: " + betPawa.TeamData.get(a).getDraw() + " "
+                                        + "Away Team: " + betPawa.TeamData.get(a).getAway_team() + ": " + betPawa.TeamData.get(a).getAway_win() + " " + "\n" +
+                                        "Site:" + betIN_sporty.get(b).getSite() + "\n" + "Home Team: " + betIN_sporty.get(b).getHome_team() + ": " + betIN_sporty.get(b).getHome_win()
+                                        + " " + "Draw: " + betIN_sporty.get(b).getDraw() + " "
+                                        + "Away Team: " + betIN_sporty.get(b).getAway_team() + ": " + betIN_sporty.get(b).getAway_win()+"\n ARB_Value = "+arbitarageValue+"\n\n"
+
+                        );
 
                     }
                     System.out.println("ArbitarageValue: round 2 " + arbitarageValue);

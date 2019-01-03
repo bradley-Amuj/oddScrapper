@@ -66,7 +66,6 @@ public class BetPawa implements Runnable {
 
             selections = (ArrayList<WebElement>)team.findElements(By.cssSelector(".event-bet"));
             String date = team.findElement(By.cssSelector(".date-minutes")).getText();
-            ;
             String [] teams =team.findElement(By.cssSelector(".general-live-container.first > h3:nth-child(1)")).getText().split("-");
             Team.setSite("BetPawa");
             Team.setHome_team(teams[0]);
@@ -100,7 +99,6 @@ public class BetPawa implements Runnable {
         for(Bet team:teamsList){
             if(team.getDate().equals(currentdate)){
                 TeamData.add(team);
-              ;
             }
         }
 

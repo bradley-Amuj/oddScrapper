@@ -36,9 +36,9 @@ public class Gmail {
         try {
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("user@gmail.com"));
+            message.setFrom(new InternetAddress(EmailAddress));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("recepient@gmail.com"));
+                    InternetAddress.parse("recepient@gmail.com"));// replace with recepient email address
             message.setSubject("ODDS SCRAPPER");
             message.setText("Dear User,"
                     + "\n\n"+ sms);

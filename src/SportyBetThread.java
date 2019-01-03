@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class SportyBetThread  implements Runnable{
     WebDriver driver;
-    ArrayList<WebElement>leagueRows;
     ArrayList<WebElement>teamList;
     ArrayList<Bet>TeamsData = new ArrayList<>();
     ArrayList<WebElement>outcomes;

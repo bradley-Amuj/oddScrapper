@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BetInThread implements Runnable{
     private WebDriver driver;
-    ArrayList<WebElement> rows = new ArrayList<>();
+    private ArrayList<WebElement> rows = new ArrayList<>();
     ArrayList<Bet>teamsData = new ArrayList<>();
 
     public BetInThread(WebDriver driver) {
