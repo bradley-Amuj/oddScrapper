@@ -26,7 +26,7 @@ public class test {
 
         SportyBetThread sportyBetThread = new SportyBetThread(new ChromeDriver());
         sportyBetThread.run();
-//
+
        BetPawa betPawa = new BetPawa(new ChromeDriver());
        betPawa.run();
 
@@ -46,16 +46,12 @@ public class test {
 
 
 
-        Gmail gmail = new Gmail("email@gmail.com","password");
-        gmail.sendMessage("running successfully");
-
-
         boolean positiveReturns = false;
         for (int a = 0; a < betPawa.TeamData.size(); a++) {
 
             for (int b = 0; b < betIN_sporty.size(); b++) {
 
-                if (similarity(betPawa.TeamData.get(a).getHome_team(), betIN_sporty.get(b).getHome_team()) >= 0.8 && similarity(betPawa.TeamData.get(a).getAway_team(), betIN_sporty.get(b).getAway_team()) >= 0.8) {
+                if (similarity(betPawa.TeamData.get(a).getHome_team(), betIN_sporty.get(b).getHome_team()) >= 0.3 && similarity(betPawa.TeamData.get(a).getAway_team(), betIN_sporty.get(b).getAway_team()) >= 0.36) {
                     System.out.println("Site:" + betPawa.TeamData.get(a).getSite() + " \n" + "Home Team: " + betPawa.TeamData.get(a).getHome_team() + ": " + betPawa.TeamData.get(a).getHome_win()
                             + " " + "Draw: " + betPawa.TeamData.get(a).getDraw() + " "
                             + "Away Team: " + betPawa.TeamData.get(a).getAway_team() + ": " + betPawa.TeamData.get(a).getAway_win() + " " + "\n" +
@@ -78,6 +74,7 @@ public class test {
 
                     }
                     System.out.println("ArbitarageValue: round 2 " + arbitarageValue);
+                    System.out.println(positiveReturns);
 
 
                 }
@@ -99,7 +96,7 @@ public class test {
             Bet Matches = new Bet();
             for (int x = 0; x < ListB.size(); x++) {
 
-                if (similarity(ListA.get(i).getHome_team(), ListB.get(x).getHome_team()) >= 0.8 && similarity(ListA.get(i).getAway_team(), ListB.get(x).getAway_team()) >= 0.8) {
+                if (similarity(ListA.get(i).getHome_team(), ListB.get(x).getHome_team()) >= 0.5 && similarity(ListA.get(i).getAway_team(), ListB.get(x).getAway_team()) >= 0.5) {
                     System.out.println("Site:" + ListA.get(i).getSite() + " \n" + "Home Team: " + ListA.get(i).getHome_team() + ": " + ListA.get(i).getHome_win()
                             + " " + "Draw: " + ListA.get(i).getDraw() + " "
                             + "Away Team: " + ListA.get(i).getAway_team() + ": " + ListA.get(i).getAway_win() + " " + "\n" +

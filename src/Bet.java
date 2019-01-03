@@ -1,9 +1,18 @@
 public class Bet {
     private String Home_team,Away_team,home_win,draw,away_win,site;
+    private String date;
 
 
     public Bet() {
 
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public String getHome_team() {
@@ -56,7 +65,7 @@ public class Bet {
     public String toString(){
 
         return "Site:"+site+"/n Home Team: "+Home_team+": "+ home_win+"\n"+"Draw:"+ draw+"\n"
-                +"Away Team:" +Away_team+": "+ away_win;
+                +"Away Team:" +Away_team+": "+ away_win +" \n"+ "Date:"+getDate();
     }
 
 
