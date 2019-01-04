@@ -34,6 +34,7 @@ public class BetInThread implements Runnable{
             i += 200;
         }
 
+
         for (WebElement rowDetails : rows) {
             ArrayList<WebElement> teamDetails = (ArrayList<WebElement>) rowDetails.findElements(By.cssSelector(".match-content__row.table-f"));
             ArrayList<WebElement> betDetails = (ArrayList<WebElement>) rowDetails.findElements(By.cssSelector(".bets__item"));

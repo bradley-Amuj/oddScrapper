@@ -1,7 +1,6 @@
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.tools.JavaFileManager;
 import java.util.Properties;
 
 public class Gmail {
@@ -23,7 +22,7 @@ public class Gmail {
          session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(emailAddress, password);
+                        return new PasswordAuthentication(EmailAddress, Password);
                     }
                 });
 

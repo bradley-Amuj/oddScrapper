@@ -1,10 +1,6 @@
-import jxl.Workbook;
-import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class test {
 
@@ -16,30 +12,11 @@ public class test {
         BetInThread betInThread = new BetInThread(new ChromeDriver());
         betInThread.run();
 
-
-
-        //SportPesaThread sportPesa = new SportPesaThread();
-        //sportPesa.run();
-
-//        DafabetThread dafabetThread = new DafabetThread();
-//        dafabetThread.run();
-
         SportyBetThread sportyBetThread = new SportyBetThread(new ChromeDriver());
         sportyBetThread.run();
 
        BetPawa betPawa = new BetPawa(new ChromeDriver());
        betPawa.run();
-
-
-        //EliteBetThread eliteBetThread = new EliteBetThread();
-        //eliteBetThread.run();
-
-        //Betboss betboss  = new Betboss();
-        //betboss.run();
-
-
-
-
 
         betIN_sporty = getMatch(betInThread.teamsData, sportyBetThread.TeamsData);
 
@@ -49,7 +26,7 @@ public class test {
 
             for (int b = 0; b < betIN_sporty.size(); b++) {
 
-                if (similarity(betPawa.TeamData.get(a).getHome_team(), betIN_sporty.get(b).getHome_team()) >= 0.3 && similarity(betPawa.TeamData.get(a).getAway_team(), betIN_sporty.get(b).getAway_team()) >= 0.36) {
+                if (similarity(betPawa.TeamData.get(a).getHome_team(), betIN_sporty.get(b).getHome_team()) >= 0.6 && similarity(betPawa.TeamData.get(a).getAway_team(), betIN_sporty.get(b).getAway_team()) >= 0.6) {
                     System.out.println("Site:" + betPawa.TeamData.get(a).getSite() + " \n" + "Home Team: " + betPawa.TeamData.get(a).getHome_team() + ": " + betPawa.TeamData.get(a).getHome_win()
                             + " " + "Draw: " + betPawa.TeamData.get(a).getDraw() + " "
                             + "Away Team: " + betPawa.TeamData.get(a).getAway_team() + ": " + betPawa.TeamData.get(a).getAway_win() + " " + "\n" +
@@ -71,15 +48,15 @@ public class test {
                         positiveReturns = true;
 
                         //replace with your emailadress and password
-                        new Gmail("you'reEmail@gmail.com","password").sendMessage(
-                                "Site:" + betPawa.TeamData.get(a).getSite() + "\n" + "Home Team:-" + betPawa.TeamData.get(a).getHome_team() + ": " + betPawa.TeamData.get(a).getHome_win()
-                                        + " " + "Draw: " + betPawa.TeamData.get(a).getDraw() + " "
-                                        + "Away Team: " + betPawa.TeamData.get(a).getAway_team() + ": " + betPawa.TeamData.get(a).getAway_win() + " " + "\n" +
-                                        "Site:" + betIN_sporty.get(b).getSite() + "\n" + "Home Team: " + betIN_sporty.get(b).getHome_team() + ": " + betIN_sporty.get(b).getHome_win()
-                                        + " " + "Draw: " + betIN_sporty.get(b).getDraw() + " "
-                                        + "Away Team: " + betIN_sporty.get(b).getAway_team() + ": " + betIN_sporty.get(b).getAway_win()+"\n ARB_Value = "+arbitarageValue+"\n\n"
-
-                        );
+//                        new Gmail("you'reEmail@gmail.com","password").sendMessage(
+//                                "Site:" + betPawa.TeamData.get(a).getSite() + "\n" + "Home Team:-" + betPawa.TeamData.get(a).getHome_team() + ": " + betPawa.TeamData.get(a).getHome_win()
+//                                        + " " + "Draw: " + betPawa.TeamData.get(a).getDraw() + " "
+//                                        + "Away Team: " + betPawa.TeamData.get(a).getAway_team() + ": " + betPawa.TeamData.get(a).getAway_win() + " " + "\n" +
+//                                        "Site:" + betIN_sporty.get(b).getSite() + "\n" + "Home Team: " + betIN_sporty.get(b).getHome_team() + ": " + betIN_sporty.get(b).getHome_win()
+//                                        + " " + "Draw: " + betIN_sporty.get(b).getDraw() + " "
+//                                        + "Away Team: " + betIN_sporty.get(b).getAway_team() + ": " + betIN_sporty.get(b).getAway_win()+"\n ARB_Value = "+arbitarageValue+"\n\n"
+//
+//                        );
 
                     }
                     System.out.println("ArbitarageValue: round 2 " + arbitarageValue);
@@ -105,7 +82,7 @@ public class test {
             Bet Matches = new Bet();
             for (int x = 0; x < ListB.size(); x++) {
 
-                if (similarity(ListA.get(i).getHome_team(), ListB.get(x).getHome_team()) >= 0.5 && similarity(ListA.get(i).getAway_team(), ListB.get(x).getAway_team()) >= 0.5) {
+                if (similarity(ListA.get(i).getHome_team(), ListB.get(x).getHome_team()) >= 0.7 && similarity(ListA.get(i).getAway_team(), ListB.get(x).getAway_team()) >= 0.7) {
                     System.out.println("Site:" + ListA.get(i).getSite() + " \n" + "Home Team: " + ListA.get(i).getHome_team() + ": " + ListA.get(i).getHome_win()
                             + " " + "Draw: " + ListA.get(i).getDraw() + " "
                             + "Away Team: " + ListA.get(i).getAway_team() + ": " + ListA.get(i).getAway_win() + " " + "\n" +
